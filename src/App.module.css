@@ -1,0 +1,10 @@
+.wrapper {
+    background: var(--gray-600);
+    /* max-width: 90rem; */
+    margin: 2rem auto;
+    padding: 0 1rem;
+    height: 64rem;
+    -webkit-font-smoothing: antialiased;
+
+    display: block;
+}

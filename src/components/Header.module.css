@@ -1,0 +1,33 @@
+.header {
+    position: absolute;
+    height: 12.5rem;
+    left: 0px;
+    right: 0px;
+    top: 0px;
+
+    background: var(--gray-700);
+}
+
+.logo {
+    position: sticky;
+    top: 4.5rem;
+    gap: 0.875rem;
+
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+}
+
+.rocket {
+    width: 1.375rem;
+    height: 2.25rem;
+    top: 5.125rem;
+    left: calc(50% - 1.375px/2 - 1.375rem);
+}
+
+.todo {
+    width: 5.75rem;
+    height: 3rem;
+    top: 4.5rem;
+    left: calc(50% - 5.75rem/2 + 1.063rem);
+}
