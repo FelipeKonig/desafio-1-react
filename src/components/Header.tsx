@@ -9,10 +9,9 @@ export function Header() {
             <div className={styles.centerLogo}>
                 <div className={styles.logo}>
                     <img className={styles.rocket} src={rocketLogo} alt="logo com um foguete com borda azul" />
-                    <img  className={styles.todo} src={todoLogo} alt="logo escrito 'TODO' sem azul e roxo" />
+                    <img  className={styles.todo} src={todoLogo} alt="logo escrito 'TODO' em metade azul e roxo" />
                 </div>
             </div>
-           
         </header>
     )
 }
