@@ -1,0 +1,202 @@
+.tasks {
+    /* Auto layout */
+
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 0px;
+    gap: 24px;
+
+    position: absolute;
+    width: 46rem;
+    height: 17.9375rem;
+    left: calc(50% - 736px/2);
+    top: 18.875rem;
+}
+
+.info {
+    /* Auto layout */
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-end;
+    padding: 0px;
+    gap: 31.5rem;
+
+    width: 46rem;
+    height: 1.1875rem;
+
+
+    /* Inside auto layout */
+
+    flex: none;
+    order: 0;
+    align-self: stretch;
+    flex-grow: 0;
+}
+
+span {
+    font-weight: 700;
+    font-size: 0.875rem;
+    line-height: 1.0625rem;
+}
+
+.created {
+
+    color: var(--blue);
+
+    /* Auto layout */
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 0px;
+    gap: 0.5rem;
+
+    width: 8.6875rem;
+    height: 1.1875rem;
+
+    /* Inside auto layout */
+
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+}
+
+.number {
+    width: 0.5625rem;
+    height: 0.9375rem;
+
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 0.75rem;
+    line-height: 0.9375rem;
+    /* identical to box height */
+
+    color: var(--gray-200);
+}
+
+.border {
+    /* Auto layout */
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 2px 8px;
+    gap: 10px;
+
+    width: 1.5625rem;
+    height: 1.1875rem;
+
+    /* Gray 400 */
+
+    background: #333333;
+    border-radius: 999px;
+
+    /* Inside auto layout */
+
+    flex: none;
+    order: 1;
+    flex-grow: 0;
+}
+
+.done {
+    /* Auto layout */
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 0px;
+    gap: 0.5rem;
+
+    width: 6.9375rem;
+    height: 1.1875rem;
+
+
+    /* Inside auto layout */
+
+    flex: none;
+    order: 1;
+    flex-grow: 0;
+}
+
+.concluded {
+    width: 4.875rem;
+    height: 1.0625rem;
+
+    font-weight: 700;
+    font-size: 0.875rem;
+    line-height: 1.0625rem;
+    /* identical to box height */
+
+
+    /* Purple */
+    color: var(--purple);
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 0px;
+    gap: 0.5rem;
+
+    /* Inside auto layout */
+
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+}
+
+.empty {
+    box-sizing: border-box;
+
+    /* Auto layout */
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 4rem 1.5rem;
+    gap: 1rem;
+
+    width: 46rem;
+    height: 15.25rem;
+
+    /* Grey 400 */
+
+    border-top: 1px solid #333333;
+    border-radius: 0.5rem;
+
+    /* Inside auto layout */
+
+    flex: none;
+    order: 1;
+    align-self: stretch;
+    flex-grow: 0;
+}
+
+.emptyList {
+    width: 43rem;
+    height: 2.75rem;
+
+    font-weight: 700;
+    font-size: 1rem;
+    line-height: 1.375rem;
+    /* or 22px */
+
+    text-align: center;
+
+    /* Gray 300 */
+
+    color: var(--gray-300);
+
+
+    /* Inside auto layout */
+
+    flex: none;
+    order: 1;
+    align-self: stretch;
+    flex-grow: 0;
+}
