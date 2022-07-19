@@ -8,7 +8,8 @@
     gap: 24px;
 
     position: absolute;
-    width: 46rem;
+    width: 80%;
+    max-width: 46rem;
     height: 17.9375rem;
     left: calc(50% - 736px/2);
     top: 18.875rem;
@@ -22,11 +23,9 @@
     justify-content: space-between;
     align-items: flex-end;
     padding: 0px;
-    gap: 31.5rem;
 
-    width: 46rem;
+    max-width: 46rem;
     height: 1.1875rem;
-
 
     /* Inside auto layout */
 
@@ -112,7 +111,7 @@ span {
     padding: 0px;
     gap: 0.5rem;
 
-    width: 6.9375rem;
+    max-width: 6.9375rem;
     height: 1.1875rem;
 
 
@@ -161,7 +160,7 @@ span {
     padding: 4rem 1.5rem;
     gap: 1rem;
 
-    width: 46rem;
+    max-width: 46rem;
     height: 15.25rem;
 
     /* Grey 400 */
@@ -178,7 +177,7 @@ span {
 }
 
 .emptyList {
-    width: 43rem;
+    max-width: 43rem;
     height: 2.75rem;
 
     font-weight: 700;
@@ -199,4 +198,12 @@ span {
     order: 1;
     align-self: stretch;
     flex-grow: 0;
+}
+
+@media (max-width: 800px) {
+
+    .tasks {
+        left: calc(50% - 80%/2);
+    }
+
 }

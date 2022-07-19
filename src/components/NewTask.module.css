@@ -16,14 +16,6 @@
     top: 10.8125rem;
 }
 
-@media (max-width: 800px) {
-
-    .principal {
-        left: calc(50% - 80%/2);
-    }
-
-}
-
 input {
     box-sizing: border-box;
 
@@ -78,4 +70,12 @@ button {
     order: 1;
     flex-grow: 0;
     float: right;
+}
+
+@media (max-width: 800px) {
+
+    .principal {
+        left: calc(50% - 80%/2);
+    }
+
 }
