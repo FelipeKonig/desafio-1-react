@@ -46,7 +46,7 @@ input {
     flex-grow: 1;
 }
 
-button {
+.principal button {
     /* Auto layout */
 
     display: flex;
@@ -70,6 +70,20 @@ button {
     order: 1;
     flex-grow: 0;
     float: right;
+}
+
+.principal button span {
+    width: 2.125rem;
+    height: 1.25rem;
+
+    font-weight: 700;
+    font-size: 0.875rem;
+    line-height: 140%;
+    /* identical to box height, or 20px */
+
+
+    /* Gray 100 */
+    color: var(--gray-100);
 }
 
 @media (max-width: 800px) {
