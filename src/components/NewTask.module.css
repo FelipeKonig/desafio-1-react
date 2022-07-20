@@ -46,6 +46,10 @@ input {
     flex-grow: 1;
 }
 
+textarea:focus, input:focus {
+    color: var(--white);
+}
+
 .principal button {
     /* Auto layout */
 

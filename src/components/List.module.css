@@ -169,6 +169,10 @@ span {
     flex-grow: 0;
 }
 
+.emptyListBox {
+    display: contents;
+}
+
 .emptyList {
     max-width: 43rem;
     height: 2.75rem;
@@ -242,13 +246,27 @@ span {
     color: var(--blue);
 }
 
+.iconChecked {
+    left: 13.64%;
+    right: 13.64%;
+    top: 13.64%;
+    bottom: 13.64%;
+}
+
+.iconChecked path {
+    color: var(--dark-purple);
+}
+
+.iconChecked rect {
+    color: var(--white);
+}
+
+
 .contentTask {
     width: 80%;
     max-width: 39.5rem;
     height: 2.5rem;
 
-    font-family: 'Inter';
-    font-style: normal;
     font-weight: 400;
     font-size: 0.875rem;
     line-height: 140%;
@@ -262,6 +280,30 @@ span {
 
     /* Inside auto layout */
 
+    flex: none;
+    order: 1;
+    flex-grow: 1;
+}
+
+.contentTaskConcluded {
+    width: 80%;
+    max-width: 39.5rem;
+    height: 2.5rem;
+
+    font-weight: 400;
+    font-size: 0.875rem;
+    line-height: 140%;
+    /* or 20px */
+    
+    text-decoration-line: line-through;
+    
+    /* Gray 300 */
+    
+    color: var(--gray-300);
+    
+    
+    /* Inside auto layout */
+    
     flex: none;
     order: 1;
     flex-grow: 1;
