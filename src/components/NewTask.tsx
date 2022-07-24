@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { ChangeEvent, InvalidEvent, useState } from "react";
 import { List } from "./List";
 import styles from "./NewTask.module.css";
 
@@ -12,7 +12,7 @@ interface Task {
 export function NewTask() {
 
     const[countCreatedTasks, setCountCreatedTasks] = useState(1);
-    const[countConcludedTasks, setCountConcludedTasks] = useState(1);
+    const[countConcludedTasks, setCountConcludedTasks] = useState(0);
 
     const[tasks, setTasks] = useState<Task[]>([{content: 'Primeira task',checked: false}]);
     const[newTaskName, setNewTaskName] = useState('');
@@ -20,26 +20,41 @@ export function NewTask() {
     function handleNewTask() {
         event?.preventDefault();
 
-        setTasks([...tasks, {content: newTaskName, checked: true}]);
+        setTasks([...tasks, {content: newTaskName, checked: false}]);
         setCountCreatedTasks((countCreatedTasks) => {
             return countCreatedTasks +1;
         })
-        setCountConcludedTasks((setCountConcludedTasks) => {
-            return setCountConcludedTasks +1;
-        })
+        
         setNewTaskName('');
     }
 
-    function handleNewCommentChange() {
+    function handleNewTaskChange(event: ChangeEvent<HTMLInputElement>) {
+        event.target.setCustomValidity('');
         setNewTaskName(event.target.value);
     }
 
-    function handleCheckTask(contentTask: string) {
+    function handleNewTaskInvalid(event: InvalidEvent<HTMLInputElement>) {
+        event.target.setCustomValidity('Esse campo é obrigatório!');
+    }
+
+    function checkTask(contentTask: string) {
         const taskChecked = () => {
             return tasks.map(item => {
                 var task = Object.assign({}, item);
                 if (task.content == contentTask) {
-                    task.checked = true;
+                    if(task.checked) {
+                        task.checked = false;
+                        
+                        setCountConcludedTasks((setCountConcludedTasks) => {
+                            return setCountConcludedTasks -1;
+                        })
+                    }else {
+                        task.checked = true;
+
+                        setCountConcludedTasks((setCountConcludedTasks) => {
+                            return setCountConcludedTasks +1;
+                        })
+                    }
                 }
                 return task;
             });
@@ -48,12 +63,29 @@ export function NewTask() {
         setTasks(taskChecked);
     }
 
-    function handleDeleteTask(taskContentToDelete : string){
+    function deleteTask(taskContentToDelete : string, taskCheckToDelete : boolean){
+
+        adjustCountsTasks(taskCheckToDelete);
+
         const tasksWithoutDeletedOne = tasks.filter(task => {
             return task.content !== taskContentToDelete;
         });
 
         setTasks(tasksWithoutDeletedOne);
+    }
+
+    function adjustCountsTasks(taskCheckToDelete : boolean){
+        if(taskCheckToDelete) {
+            setCountConcludedTasks((setCountConcludedTasks) => {
+                return setCountConcludedTasks -1;
+            })
+        }
+
+        setCountCreatedTasks((setCountCreatedTasks) => {
+            return setCountCreatedTasks -1;
+        })
+
+        console.log(countCreatedTasks);
     }
 
     return (
@@ -64,7 +96,9 @@ export function NewTask() {
                     type="text"
                     value={newTaskName}
                     placeholder="Adicione uma nova palavra"
-                    onChange={handleNewCommentChange}
+                    onChange={handleNewTaskChange}
+                    onInvalid={handleNewTaskInvalid}
+                    required
                 />
                 <button type="submit">
                     <span>Criar</span> 
@@ -104,9 +138,11 @@ export function NewTask() {
                             tasks.map(task => {
                                 return <List 
                                     key={task.content}
-                                    content={task.content} 
+                                    content={task.content}
                                     checked={task.checked}
-                                    isEmpty={countCreatedTasks == 0}                         
+                                    isEmpty={countCreatedTasks == 0} 
+                                    onCheckTask={checkTask}
+                                    onDeleteTask={deleteTask}    
                                 />
                             })
                         }

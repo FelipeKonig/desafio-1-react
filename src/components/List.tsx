@@ -8,9 +8,19 @@ interface taskProps {
     content : string;
     checked : boolean;
     isEmpty: boolean;
+    onCheckTask: (taskContent: string) => void;
+    onDeleteTask: (taskContent: string, taskCheck : boolean) => void;
 }
 
-export function List({content, checked, isEmpty} : taskProps) {
+export function List({content, checked, isEmpty, onCheckTask, onDeleteTask} : taskProps) {
+
+    function handleDeleteTask() {
+        onDeleteTask(content, checked);
+    }
+
+    function handleCheckTask() {
+        onCheckTask(content);
+    }
 
     return (
         <div className={styles.item}>
@@ -18,9 +28,9 @@ export function List({content, checked, isEmpty} : taskProps) {
                     <div className={styles.task}>
                         <div className={styles.check}>
                             {checked ? (
-                                    <CheckCircle size={24} className={styles.iconChecked} weight="fill" />
+                                    <CheckCircle onClick={handleCheckTask} size={24} className={styles.iconChecked} weight="fill" />
                                 ) : (
-                                    <Circle size={24} className={styles.icon}/>
+                                    <Circle onClick={handleCheckTask} size={24} className={styles.icon}/>
                                 )
                             }
                         </div>
@@ -34,7 +44,7 @@ export function List({content, checked, isEmpty} : taskProps) {
                                 </p>
                             )
                         }
-                        <img className={styles.trash} src={trashLogo} alt="o icone de um lixeiro em cinza" />
+                        <img onClick={handleDeleteTask} className={styles.trash} src={trashLogo} alt="o icone de um lixeiro em cinza" />
                     </div>) : (
                         <div className={styles.emptyList}>
                             <img src={clipboardLogo} alt="a logo de uma prancheta" />
@@ -48,3 +58,4 @@ export function List({content, checked, isEmpty} : taskProps) {
         </div>
     )
 }
+
