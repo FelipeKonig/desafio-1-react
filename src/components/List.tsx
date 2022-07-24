@@ -14,34 +14,7 @@ interface taskProps {
 export function List({content, checked, countCreatedTasks, countConcludedTasks} : taskProps) {
 
     return (
-        <div className={styles.tasks}>
-            <div className={styles.info}>
-                <span className={styles.created}>
-                    Tarefas criadas 
-                    <div className={styles.border}>
-                        <span className={styles.number}>
-                            {countCreatedTasks}
-                        </span>
-                    </div>
-                </span>
-
-                <div className={styles.done}>
-                    <span className={styles.concluded}>
-                        Concluídas
-                        <div className={styles.border}>
-                            <span className={styles.number}>
-                            {countConcludedTasks > 0 ? (
-                                    <p>{countConcludedTasks} de {countCreatedTasks}</p>
-                                ) : (
-                                    <p>{countConcludedTasks}</p>
-                                )
-                            }
-                            </span>
-                        </div>
-                    </span>
-                </div>
-            </div>
-            <div className={styles.listItems}>
+        <div className={styles.item}>
                 {countCreatedTasks > 0 ? (
                     <div className={styles.task}>
                         <div className={styles.check}>
@@ -64,16 +37,15 @@ export function List({content, checked, countCreatedTasks, countConcludedTasks} 
                         }
                         <img className={styles.trash} src={trashLogo} alt="o icone de um lixeiro em cinza" />
                     </div>) : (
-                        <div className={styles.emptyListBox}>
+                        <div className={styles.emptyList}>
                             <img src={clipboardLogo} alt="a logo de uma prancheta" />
-                            <span className={styles.emptyList}>
+                            <p className={styles.emptyList}>
                                 Você ainda não tem tarefas cadastradas <br />
                                 Crie tarefas e organize seus itens a fazer
-                            </span>
+                            </p>
                         </div>
                     )
                 }
-            </div>
         </div>
     )
 }
