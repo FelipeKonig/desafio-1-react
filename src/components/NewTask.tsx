@@ -4,26 +4,68 @@ import styles from "./NewTask.module.css";
 
 import addLogo from '/assets/add-logo.svg';
 
+interface Task {
+    content : string;
+    checked : boolean;
+}
+
 export function NewTask() {
 
     const[countCreatedTasks, setCountCreatedTasks] = useState(1);
-    const[countConcludedTasks, setCountConcludedTasks] = useState(0);
+    const[countConcludedTasks, setCountConcludedTasks] = useState(1);
 
-    const [tasks, setTasks] = useState([1]);
-
-    const[newtask, setNewTask] = useState('');
+    const[tasks, setTasks] = useState<Task[]>([{content: 'Primeira task',checked: false}]);
+    const[newTaskName, setNewTaskName] = useState('');
 
     function handleNewTask() {
         event?.preventDefault();
 
-        console.log(tasks);
-        setTasks([...tasks, tasks.length+1]);
+        setTasks([...tasks, {content: newTaskName, checked: true}]);
+        setCountCreatedTasks((countCreatedTasks) => {
+            return countCreatedTasks +1;
+        })
+        setCountConcludedTasks((setCountConcludedTasks) => {
+            return setCountConcludedTasks +1;
+        })
+        setNewTaskName('');
+    }
+
+    function handleNewCommentChange() {
+        setNewTaskName(event.target.value);
+    }
+
+    function handleCheckTask(contentTask: string) {
+        const taskChecked = () => {
+            return tasks.map(item => {
+                var task = Object.assign({}, item);
+                if (task.content == contentTask) {
+                    task.checked = true;
+                }
+                return task;
+            });
+        }
+
+        setTasks(taskChecked);
+    }
+
+    function handleDeleteTask(taskContentToDelete : string){
+        const tasksWithoutDeletedOne = tasks.filter(task => {
+            return task.content !== taskContentToDelete;
+        });
+
+        setTasks(tasksWithoutDeletedOne);
     }
 
     return (
         <div>
             <form className={styles.principal} onSubmit={handleNewTask}>
-                <input type="text" placeholder="Adicione uma nova palavra"/>
+                <input 
+                    name="taskName" 
+                    type="text"
+                    value={newTaskName}
+                    placeholder="Adicione uma nova palavra"
+                    onChange={handleNewCommentChange}
+                />
                 <button type="submit">
                     <span>Criar</span> 
                     <img src={ addLogo } alt="icone com um botao de mais"/>
@@ -61,11 +103,10 @@ export function NewTask() {
                         {
                             tasks.map(task => {
                                 return <List 
-                                    key={tasks.length+1}
-                                    content={tasks.toString()} 
-                                    checked={false}
-                                    countCreatedTasks={0}
-                                    countConcludedTasks={0}                         
+                                    key={task.content}
+                                    content={task.content} 
+                                    checked={task.checked}
+                                    isEmpty={countCreatedTasks == 0}                         
                                 />
                             })
                         }

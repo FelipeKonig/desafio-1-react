@@ -7,15 +7,14 @@ import trashLogo from '/assets/trash-logo.svg';
 interface taskProps {
     content : string;
     checked : boolean;
-    countCreatedTasks: number;
-    countConcludedTasks: number;
+    isEmpty: boolean;
 }
 
-export function List({content, checked, countCreatedTasks, countConcludedTasks} : taskProps) {
+export function List({content, checked, isEmpty} : taskProps) {
 
     return (
         <div className={styles.item}>
-                {countCreatedTasks > 0 ? (
+                {!isEmpty ? (
                     <div className={styles.task}>
                         <div className={styles.check}>
                             {checked ? (
