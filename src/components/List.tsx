@@ -1,4 +1,4 @@
-import { CheckCircle, Circle, Key } from 'phosphor-react';
+import { CheckCircle, Circle } from 'phosphor-react';
 import styles from './List.module.css';
 
 import trashLogo from '/assets/trash-logo.svg';
