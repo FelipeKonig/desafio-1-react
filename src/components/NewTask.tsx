@@ -3,28 +3,29 @@ import { List } from "./List";
 import styles from "./NewTask.module.css";
 
 import addLogo from '/assets/add-logo.svg';
+import clipboardLogo from '/assets/clipboard-logo.svg';
 
 interface Task {
+    id : number;
     content : string;
     checked : boolean;
 }
 
 export function NewTask() {
 
-    const[countCreatedTasks, setCountCreatedTasks] = useState(1);
+    const[countCreatedTasks, setCountCreatedTasks] = useState(0);
     const[countConcludedTasks, setCountConcludedTasks] = useState(0);
 
-    const[tasks, setTasks] = useState<Task[]>([{content: 'Primeira task',checked: false}]);
+    const[tasks, setTasks] = useState<Task[]>([]);
     const[newTaskName, setNewTaskName] = useState('');
 
     function handleNewTask() {
         event?.preventDefault();
 
-        setTasks([...tasks, {content: newTaskName, checked: false}]);
+        setTasks([...tasks, {id : Math.random(),content: newTaskName, checked: false}]);
         setCountCreatedTasks((countCreatedTasks) => {
             return countCreatedTasks +1;
         })
-        
         setNewTaskName('');
     }
 
@@ -37,11 +38,11 @@ export function NewTask() {
         event.target.setCustomValidity('Esse campo é obrigatório!');
     }
 
-    function checkTask(contentTask: string) {
+    function checkTask(idTask: number) {
         const taskChecked = () => {
             return tasks.map(item => {
                 var task = Object.assign({}, item);
-                if (task.content == contentTask) {
+                if (task.id == idTask) {
                     if(task.checked) {
                         task.checked = false;
                         
@@ -63,18 +64,18 @@ export function NewTask() {
         setTasks(taskChecked);
     }
 
-    function deleteTask(taskContentToDelete : string, taskCheckToDelete : boolean){
+    function deleteTask(taskIdToDelete: number, taskCheckToDelete: boolean){
 
         adjustCountsTasks(taskCheckToDelete);
 
         const tasksWithoutDeletedOne = tasks.filter(task => {
-            return task.content !== taskContentToDelete;
+            return task.id != taskIdToDelete;
         });
 
         setTasks(tasksWithoutDeletedOne);
     }
 
-    function adjustCountsTasks(taskCheckToDelete : boolean){
+    function adjustCountsTasks(taskCheckToDelete: boolean){
         if(taskCheckToDelete) {
             setCountConcludedTasks((setCountConcludedTasks) => {
                 return setCountConcludedTasks -1;
@@ -84,8 +85,6 @@ export function NewTask() {
         setCountCreatedTasks((setCountCreatedTasks) => {
             return setCountCreatedTasks -1;
         })
-
-        console.log(countCreatedTasks);
     }
 
     return (
@@ -134,18 +133,28 @@ export function NewTask() {
                     </div>
                 </div>
                 <div className={styles.listItems}>
-                        {
-                            tasks.map(task => {
-                                return <List 
-                                    key={task.content}
-                                    content={task.content}
-                                    checked={task.checked}
-                                    isEmpty={countCreatedTasks == 0} 
-                                    onCheckTask={checkTask}
-                                    onDeleteTask={deleteTask}    
-                                />
-                            })
-                        }
+                {
+                    countCreatedTasks >= 1 ? (
+                        tasks.map(task => {
+                            return <List 
+                                key={task.id}
+                                id={task.id}
+                                content={task.content}
+                                checked={task.checked}
+                                onCheckTask={checkTask}
+                                onDeleteTask={deleteTask}    
+                               />
+                        })
+                        ) : (
+                        <div className={styles.emptyList}>
+                            <img src={clipboardLogo} alt="a logo de uma prancheta" />
+                            <p className={styles.emptyList}>
+                                Você ainda não tem tarefas cadastradas <br />
+                                Crie tarefas e organize seus itens a fazer
+                            </p>
+                        </div>
+                        )
+                }
                 </div>
             </div> 
         </div>

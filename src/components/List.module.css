@@ -4,34 +4,6 @@ span {
     line-height: 1.0625rem;
 }
 
-.emptyListBox {
-    display: contents;
-}
-
-.emptyList {
-    max-width: 43rem;
-    height: 2.75rem;
-
-    font-weight: 700;
-    font-size: 1rem;
-    line-height: 1.375rem;
-    /* or 22px */
-
-    text-align: center;
-
-    /* Gray 300 */
-
-    color: var(--gray-300);
-
-
-    /* Inside auto layout */
-
-    flex: none;
-    order: 1;
-    align-self: stretch;
-    flex-grow: 0;
-}
-
 .task {
     /* Auto layout */
 
@@ -100,7 +72,6 @@ span {
 .iconChecked rect {
     color: var(--white);
 }
-
 
 .contentTask {
     width: 80%;
